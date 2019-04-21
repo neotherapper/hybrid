@@ -1,5 +1,5 @@
 import { PeopleAction, PeopleActionTypes } from './people.actions';
-import { People } from '../../people/people.model';
+import { Person } from '../../people/person.model';
 
 export const PEOPLE_FEATURE_KEY = 'people';
 
@@ -12,7 +12,7 @@ export const PEOPLE_FEATURE_KEY = 'people';
  */
 
 export interface PeopleState {
-  list: People[]; // list of People; analogous to a sql normalized table
+  list: Person[]; // list of People; analogous to a sql normalized table
   selectedId?: string | number; // which People record has been selected
   loaded: boolean; // has the People list been loaded
   error?: any; // last none error (if any)

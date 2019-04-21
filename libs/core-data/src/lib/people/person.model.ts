@@ -1,4 +1,4 @@
-export interface PeopleI {
+export interface PersonI {
   birth_year: string,
   eye_color:  string;
   films:      string[];
@@ -17,7 +17,7 @@ export interface PeopleI {
   vehicles:   string[];
 }
 
-export class People implements PeopleI {
+export class Person implements PersonI {
   constructor(
     public birth_year: string,
     public eye_color: string,

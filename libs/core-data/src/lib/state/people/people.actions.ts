@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { People } from '../../people/people.model';
+import { Person } from '../../people/person.model';
+
 
 export enum PeopleActionTypes {
   LoadPeople = '[People] Load People',
@@ -18,7 +19,7 @@ export class PeopleLoadError implements Action {
 
 export class PeopleLoaded implements Action {
   readonly type = PeopleActionTypes.PeopleLoaded;
-  constructor(public payload: People[]) {}
+  constructor(public payload: Person[]) {}
 }
 
 export type PeopleAction = LoadPeople | PeopleLoaded | PeopleLoadError;

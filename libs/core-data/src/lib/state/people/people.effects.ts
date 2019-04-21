@@ -11,7 +11,7 @@ import {
   PeopleActionTypes
 } from './people.actions';
 import { PeopleService } from '../../people/people.service';
-import { People } from '../../people/people.model';
+import { Person } from '../../people/person.model';
 
 @Injectable()
 export class PeopleEffects {
@@ -22,7 +22,7 @@ export class PeopleEffects {
         // Your custom REST 'load' logic goes here. For now just return an empty list...
         return this.peopleService.getPeople()
         .pipe(
-          map( (res: People[]) => new PeopleLoaded(res) )
+          map( (res: Person[]) => new PeopleLoaded(res) )
         )
       },
 
