@@ -11,7 +11,7 @@ import {
   PlatformLanguageToken,
   PlatformWindowToken
 } from '@workspace/core';
-import { FirebaseModule } from '@workspace/firebase/src';
+import { CoreDataModule } from '@workspace/core-data/src';
 
 // bring in custom web services here...
 
@@ -34,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
-    FirebaseModule,
+    CoreDataModule,
     CoreModule.forRoot([
       {
         provide: PlatformLanguageToken,
