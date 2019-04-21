@@ -1,4 +1,5 @@
 import { PeopleAction, PeopleActionTypes } from './people.actions';
+import { People } from '../../people/people.model';
 
 export const PEOPLE_FEATURE_KEY = 'people';
 
@@ -10,11 +11,8 @@ export const PEOPLE_FEATURE_KEY = 'people';
  *  Note: replace if already defined in another module
  */
 
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
 export interface PeopleState {
-  list: Entity[]; // list of People; analogous to a sql normalized table
+  list: People[]; // list of People; analogous to a sql normalized table
   selectedId?: string | number; // which People record has been selected
   loaded: boolean; // has the People list been loaded
   error?: any; // last none error (if any)
