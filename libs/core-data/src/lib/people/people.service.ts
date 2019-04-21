@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { People } from './people.model';
-import { environment } from '@workspace/core/environments/environment';
+import { environment } from '@workspace/core';
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class PeopleService {
   ) { }
 
   getUrl(): string {
-    return `$(environment.starwarsApi}/${this.model}`;
+    return `${environment.starwarsApi}/${this.model}`;
   }
 
   getUrlForId(id: number): string {
