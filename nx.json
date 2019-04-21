@@ -22,6 +22,9 @@
     },
     "web-app-e2e": {
       "tags": []
+    },
+    "firebase": {
+      "tags": []
     }
   }
 }
