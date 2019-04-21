@@ -3,7 +3,7 @@ import { environment } from '@workspace/core';
 
 // @angular/fire/ Modules
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
@@ -19,6 +19,11 @@ const MODULES = [
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'starwars'),
     ...MODULES
+  ],
+  providers:[
+    {
+      provide: FirestoreSettingsToken, useValue: {}
+    }
   ],
   exports: [...MODULES]
 })
