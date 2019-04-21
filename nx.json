@@ -25,6 +25,9 @@
     },
     "firebase": {
       "tags": []
+    },
+    "core-data": {
+      "tags": []
     }
   }
 }

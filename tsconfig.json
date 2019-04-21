@@ -20,7 +20,8 @@
       "@workspace/ionic/*": ["xplat/ionic/*"],
       "@workspace/web": ["xplat/web/index.ts"],
       "@workspace/web/*": ["xplat/web/*"],
-      "@workspace/firebase": ["libs/firebase/src/index.ts"]
+      "@workspace/firebase": ["libs/firebase/src/index.ts"],
+      "@workspace/core-data": ["libs/core-data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
