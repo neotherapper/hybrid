@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   api_url: 'http://127.0.0.1:4000',
   baseRoutePath: '',
-  starwarsApi: 'https://swapi.co/api/',
+  starwarsApi: 'https://swapi.co/api',
   firebase: {
     apiKey: "AIzaSyCyLVLVMGEblS-ylUswPg5aMUya4cjb4FU",
     authDomain: "starwars-9a87f.firebaseapp.com",

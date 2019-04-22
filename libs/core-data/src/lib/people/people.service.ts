@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@workspace/core';
 import { Person } from './person.model';
-
+import { map } from 'rxjs/operators';
+import { StarWarsApi } from '../star-wars-api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,12 @@ export class PeopleService {
   }
 
   getPeople(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.getUrl());
+    return this.http.get<StarWarsApi>(this.getUrl())
+      .pipe(
+        map( (res) => {
+          return res.results;
+        })
+      );
   }
 
   getPersonById(id: number): Observable<Person> {
