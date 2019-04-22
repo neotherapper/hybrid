@@ -1,5 +1,6 @@
 import { BaseComponent } from '@workspace/core';
 import { Observable } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 
 export abstract class RegistrationBaseComponent extends BaseComponent {
   registration = {
@@ -9,13 +10,33 @@ export abstract class RegistrationBaseComponent extends BaseComponent {
   submitted = false;
 
 
-  constructor() {
+  constructor(public toastController: ToastController) {
     super();
   }
 
+  abstract onFacebookSign(): void;
+
   onSignUp(): void {
     //here we will call registration dispatcher to sign up the user
-    console.log('%cRegistrationBaseComponent onSignUp', 'color:brown', this.registration );
+    const toastMessage = `RegistrationBaseComponent onSignUp that will send ${JSON.stringify(this.registration)}`;
+    this.message(toastMessage);
     this.submitted = true;
+  }
+
+  onSignIn(): void {
+    //here we will call sign in dispatcher to sign in the user
+    const toastMessage = `RegistrationBaseComponent onSignIn that will send ${JSON.stringify(this.registration)}`;
+    this.message(toastMessage);
+    this.submitted = true;
+  }
+
+  async message(message: string) {
+    const toastOptions = {
+      message: message,
+      duration: 2000,
+      color: 'dark'
+    }
+    const toast = await this.toastController.create(toastOptions);
+    toast.present();
   }
 }
