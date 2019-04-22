@@ -25,7 +25,7 @@
           </p>
         </ion-text>
 
-        <ion-item class="no-border">
+        <ion-item [ngClass]="{'no-border': password.valid || submitted == false}" >
           <ion-icon name="lock" slot="start"></ion-icon>
           <ion-input [(ngModel)]="registration.password" name="password" type="password" placeholder="Password"
             #password="ngModel" required>
@@ -39,6 +39,22 @@
         </ion-text>
       </ion-list>
 
+      <ion-row align-items-center>
+        <ion-col>
+          <ion-text color="dark">
+            <h6 class="ion-text-center">
+              Sign in with
+            </h6>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row align-items-center>
+        <ion-col class="ion-text-center">
+          <ion-icon name="logo-facebook" (click)="onFacebookSign()"></ion-icon>
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col>
           <ion-button fill="outline" color="dark" type="submit" expand="block">
@@ -46,7 +62,7 @@
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button (click)="onSignUp()" color="dark" expand="block">Sign in</ion-button>
+          <ion-button (click)="onSignIn()" color="dark" expand="block">Sign in</ion-button>
         </ion-col>
       </ion-row>
     </form>
