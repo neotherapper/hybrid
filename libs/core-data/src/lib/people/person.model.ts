@@ -35,7 +35,5 @@ export class Person implements PersonI {
     public starships: string[],
     public url: string,
     public vehicles: string[],
-  ) {
-
-  }
+  ) {}
 }

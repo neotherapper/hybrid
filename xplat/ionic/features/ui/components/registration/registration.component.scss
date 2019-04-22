@@ -1,0 +1,18 @@
+@import '../../../../scss/index';
+
+ion-input {
+  --placeholder-color: var(--ion-text-color, #000);
+  --placeholder-opacity: 1;
+}
+
+ion-item.no-border {
+  --border-color: transparent;
+}
+
+ion-icon {
+  color: $icon-color;
+}
+
+ion-button {
+  --border-radius: 25px;
+}
