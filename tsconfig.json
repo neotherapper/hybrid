@@ -9,36 +9,19 @@
     "importHelpers": true,
     "target": "es5",
     "module": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@workspace/*": [
-        "libs/*"
-      ],
-      "@workspace/ionic": [
-        "xplat/ionic/index.ts"
-      ],
-      "@workspace/ionic/*": [
-        "xplat/ionic/*"
-      ],
-      "@workspace/web": [
-        "xplat/web/index.ts"
-      ],
-      "@workspace/web/*": [
-        "xplat/web/*"
-      ]
+      "@workspace/*": ["libs/*"],
+      "@workspace/ionic": ["xplat/ionic/index.ts"],
+      "@workspace/ionic/*": ["xplat/ionic/*"],
+      "@workspace/web": ["xplat/web/index.ts"],
+      "@workspace/web/*": ["xplat/web/*"],
+      "@workspace/firebase": ["libs/firebase/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }
