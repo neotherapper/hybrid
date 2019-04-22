@@ -2,26 +2,32 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PEOPLE_FEATURE_KEY, PeopleState } from './people.reducer';
 
 // Lookup the 'People' feature state managed by NgRx
-const getPeopleState = createFeatureSelector<PeopleState>(PEOPLE_FEATURE_KEY);
+const peopleFeatureState = createFeatureSelector<PeopleState>(PEOPLE_FEATURE_KEY);
 
-const getLoaded = createSelector(
-  getPeopleState,
-  (state: PeopleState) => state.loaded
+const selectAllLoadedPeople = (state: PeopleState) => state.loaded;
+
+const selectAllPeople = (state: PeopleState, isLoaded:boolean) => {
+  return isLoaded ? state.list : [];
+}
+
+const selectErrors = (state: PeopleState) => state.error;
+
+const getLoadedPeople = createSelector(
+  peopleFeatureState,
+  selectAllLoadedPeople
 );
 const getError = createSelector(
-  getPeopleState,
-  (state: PeopleState) => state.error
+  peopleFeatureState,
+  selectErrors
 );
 
 const getAllPeople = createSelector(
-  getPeopleState,
-  getLoaded,
-  (state: PeopleState, isLoaded) => {
-    return isLoaded ? state.list : [];
-  }
+  peopleFeatureState,
+  getLoadedPeople,
+  selectAllPeople
 );
 const getSelectedId = createSelector(
-  getPeopleState,
+  peopleFeatureState,
   (state: PeopleState) => state.selectedId
 );
 const getSelectedPeople = createSelector(
@@ -34,7 +40,7 @@ const getSelectedPeople = createSelector(
 );
 
 export const peopleQuery = {
-  getLoaded,
+  getLoadedPeople,
   getError,
   getAllPeople,
   getSelectedPeople

@@ -8,7 +8,7 @@ import { LoadPeople } from './people.actions';
 
 @Injectable()
 export class PeopleFacade {
-  loaded$ = this.store.pipe(select(peopleQuery.getLoaded));
+  loaded$ = this.store.pipe(select(peopleQuery.getLoadedPeople));
   allPeople$ = this.store.pipe(select(peopleQuery.getAllPeople));
   selectedPeople$ = this.store.pipe(select(peopleQuery.getSelectedPeople));
 
