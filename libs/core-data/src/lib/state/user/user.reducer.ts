@@ -14,9 +14,9 @@ export const USER_FEATURE_KEY = 'user';
 export interface Entity {}
 
 export interface UserState {
-  list: Entity[]; // list of User; analogous to a sql normalized table
-  selectedId?: string | number; // which User record has been selected
-  loaded: boolean; // has the User list been loaded
+  user: firebase.User;
+  isAuthenticated: boolean;
+  loaded: boolean; // has the User been loaded
   error?: any; // last none error (if any)
 }
 
@@ -25,7 +25,8 @@ export interface UserPartialState {
 }
 
 export const initialState: UserState = {
-  list: [],
+  user: null,
+  isAuthenticated: false,
   loaded: false
 };
 
@@ -37,8 +38,9 @@ export function userReducer(
     case UserActionTypes.UserLoaded: {
       state = {
         ...state,
-        list: action.payload,
-        loaded: true
+        user: action.payload,
+        loaded: true,
+        isAuthenticated: true
       };
       break;
     }

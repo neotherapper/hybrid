@@ -1,9 +1,11 @@
 import { Action } from '@ngrx/store';
 import { Entity } from './user.reducer';
+import { UserAuth } from '../../user/user.auth';
 
 export enum UserActionTypes {
   AuthenticateUser = '[User] Authenticate User',
   UserAuthenticated = '[User] User authenticated',
+  UserAuthenticationError = '[User] User authentication Error',
   GoogleAuthenticateUser = '[User] Google Authenticate User',
   LogOutUser = '[User] Log out User',
   UserLoggedOut = '[User] User logged out',
@@ -14,11 +16,17 @@ export enum UserActionTypes {
 
 export class AuthenticateUser implements Action {
   readonly type = UserActionTypes.AuthenticateUser;
+  constructor(public payload: UserAuth) { }
 }
 
 export class UserAuthenticated implements Action {
   readonly type = UserActionTypes.UserAuthenticated;
-  constructor(public payload: Entity[]) {}
+  constructor(public payload: firebase.User) {}
+}
+
+export class UserAuthenticationError implements Action {
+  readonly type = UserActionTypes.UserAuthenticationError;
+  constructor(public payload: any) { }
 }
 
 export class GoogleAuthenticateUser implements Action {
@@ -31,7 +39,6 @@ export class LogOutUser implements Action {
 
 export class UserLoggedOut implements Action {
   readonly type = UserActionTypes.UserLoggedOut;
-  constructor(public payload: Entity[]) { }
 }
 
 export class LoadUser implements Action {
@@ -45,12 +52,13 @@ export class UserLoadError implements Action {
 
 export class UserLoaded implements Action {
   readonly type = UserActionTypes.UserLoaded;
-  constructor(public payload: Entity[]) {}
+  constructor(public payload: firebase.User) {}
 }
 
 export type UserAction =
   AuthenticateUser
   | UserAuthenticated
+  | UserAuthenticationError
   | GoogleAuthenticateUser
   | LogOutUser
   | UserLoggedOut

@@ -6,6 +6,7 @@ import { UserPartialState } from './user.reducer';
 import {
   AuthenticateUser,
   UserAuthenticated,
+  UserAuthenticationError,
   GoogleAuthenticateUser,
   LogOutUser,
   UserLoggedOut,
@@ -14,13 +15,20 @@ import {
   UserLoadError,
   UserActionTypes
 } from './user.actions';
+import { UserService } from '../../user/user.service';
+import { map, catchError } from 'rxjs/operators';
+import { from, Observable, of } from 'rxjs';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Injectable()
 export class UserEffects {
   @Effect() loadUser$ = this.dataPersistence.fetch(UserActionTypes.LoadUser, {
     run: (action: LoadUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return new UserLoaded([]);
+      return this.userService.getUser()
+        .pipe(
+          map( (user) => new UserLoaded(user))
+        );
     },
 
     onError: (action: LoadUser, error) => {
@@ -29,10 +37,14 @@ export class UserEffects {
     }
   });
 
-  @Effect() authenticateUser$ = this.dataPersistence.fetch(UserActionTypes.AuthenticateUser, {
+  @Effect() authenticateUser$ = this.dataPersistence.pessimisticUpdate(UserActionTypes.AuthenticateUser, {
     run: (action: AuthenticateUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return new UserAuthenticated([]);
+      return from(this.userService.signUpUser(action.payload))
+        .pipe(
+          map((userCredentials) => new UserAuthenticated(userCredentials.user)),
+          catchError((error) => of(new UserAuthenticationError(error)))
+        );
     },
 
     onError: (action: AuthenticateUser, error) => {
@@ -56,7 +68,7 @@ export class UserEffects {
   @Effect() logOutUser$ = this.dataPersistence.fetch(UserActionTypes.LogOutUser, {
     run: (action: LogOutUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return new UserLoggedOut([]);
+      return new UserLoggedOut();
     },
 
     onError: (action: LogOutUser, error) => {
@@ -67,6 +79,7 @@ export class UserEffects {
 
   constructor(
     private actions$: Actions,
-    private dataPersistence: DataPersistence<UserPartialState>
+    private dataPersistence: DataPersistence<UserPartialState>,
+    private userService: UserService
   ) {}
 }

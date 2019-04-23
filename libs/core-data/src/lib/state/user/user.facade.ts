@@ -5,6 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { UserPartialState } from './user.reducer';
 import { userQuery } from './user.selectors';
 import { LoadUser, AuthenticateUser } from './user.actions';
+import { UserAuth } from '../../user/user.auth';
 
 @Injectable()
 export class UserFacade {
@@ -12,11 +13,11 @@ export class UserFacade {
 
   constructor(private store: Store<UserPartialState>) {}
 
-  authenticateUser() {
-    this.store.dispatch(new AuthenticateUser());
+  authenticateUser(credentials: UserAuth) {
+    this.store.dispatch(new AuthenticateUser(credentials));
   }
 
-  loadAll() {
+  loadUser() {
     this.store.dispatch(new LoadUser());
   }
 }
