@@ -4,7 +4,10 @@ import { ToastController } from '@ionic/angular';
 import { UserFacade, UserAuthI, UserAuth } from '@workspace/core-data/src';
 
 export abstract class RegistrationBaseComponent extends BaseComponent {
-  registration = new UserAuth('', '');
+  registration = {
+    email: '',
+    password: ''
+  }
   submitted = false;
 
 

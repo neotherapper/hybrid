@@ -27,7 +27,8 @@ export class UserEffects {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
       return this.userService.getUser()
         .pipe(
-          map( (user) => new UserLoaded(user))
+          map( (user) => new UserLoaded(user)),
+          catchError((error) => of(new UserLoadError(error)))
         );
     },
 
@@ -56,7 +57,8 @@ export class UserEffects {
   @Effect() googleAuthenticateUser$ = this.dataPersistence.fetch(UserActionTypes.GoogleAuthenticateUser, {
     run: (action: GoogleAuthenticateUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return new UserLoaded([]);
+      // return new UserLoaded([]);
+      return;
     },
 
     onError: (action: GoogleAuthenticateUser, error) => {

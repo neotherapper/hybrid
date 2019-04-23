@@ -44,6 +44,14 @@ export function userReducer(
       };
       break;
     }
+    case UserActionTypes.UserLoggedOut: {
+      state = {
+        ...state,
+        user: null,
+        loaded: false,
+        isAuthenticated: false
+      }
+    }
   }
   return state;
 }
