@@ -5,3 +5,5 @@ export { PeopleFacade } from './lib/state/people/people.facade';
 export { UserFacade } from './lib/state/user/user.facade';
 export { Person, PersonI } from './lib/people/person.model';
 export { UserAuth, UserAuthI } from './lib/user/user.auth';
+export { AuthGuard } from './lib/user/auth-guard.service';
+export { NoAuthGuard } from './lib/user/no-auth-guard.service';
