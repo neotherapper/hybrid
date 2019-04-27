@@ -4,7 +4,6 @@ import { UserAuth } from '../../user/user.auth';
 
 export enum UserActionTypes {
   AuthenticateUser = '[User] Authenticate User',
-  UserAuthenticated = '[User] User authenticated',
   UserAuthenticationError = '[User] User authentication Error',
   GoogleAuthenticateUser = '[User] Google Authenticate User',
   LogOutUser = '[User] Log out User',
@@ -17,11 +16,6 @@ export enum UserActionTypes {
 export class AuthenticateUser implements Action {
   readonly type = UserActionTypes.AuthenticateUser;
   constructor(public payload: UserAuth) { }
-}
-
-export class UserAuthenticated implements Action {
-  readonly type = UserActionTypes.UserAuthenticated;
-  constructor(public payload: firebase.User) {}
 }
 
 export class UserAuthenticationError implements Action {
@@ -57,7 +51,6 @@ export class UserLoaded implements Action {
 
 export type UserAction =
   AuthenticateUser
-  | UserAuthenticated
   | UserAuthenticationError
   | GoogleAuthenticateUser
   | LogOutUser
@@ -68,7 +61,6 @@ export type UserAction =
 
 export const fromUserActions = {
   AuthenticateUser,
-  UserAuthenticated,
   GoogleAuthenticateUser,
   LogOutUser,
   UserLoggedOut,

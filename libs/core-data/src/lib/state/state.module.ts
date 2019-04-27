@@ -33,7 +33,7 @@ import { reducers } from '.';
           people: peopleInitialState,
           user: userInitialState
         },
-        metaReducers: !environment.production ? [storeFreeze] : []
+        // metaReducers: !environment.production ? [storeFreeze] : []
       }
     ),
     EffectsModule.forRoot([PeopleEffects, UserEffects]),

@@ -15,8 +15,6 @@ export interface Entity {}
 
 export interface UserState {
   user: firebase.User;
-  isAuthenticated: boolean;
-  loaded: boolean; // has the User been loaded
   error?: any; // last none error (if any)
 }
 
@@ -26,8 +24,6 @@ export interface UserPartialState {
 
 export const initialState: UserState = {
   user: null,
-  isAuthenticated: false,
-  loaded: false
 };
 
 export function userReducer(
@@ -38,18 +34,14 @@ export function userReducer(
     case UserActionTypes.UserLoaded: {
       state = {
         ...state,
-        user: action.payload,
-        loaded: true,
-        isAuthenticated: true
+        user: action.payload
       };
       break;
     }
     case UserActionTypes.UserLoggedOut: {
       state = {
         ...state,
-        user: null,
-        loaded: false,
-        isAuthenticated: false
+        user: null
       }
     }
   }

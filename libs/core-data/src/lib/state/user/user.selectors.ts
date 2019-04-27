@@ -6,7 +6,7 @@ const getUserState = createFeatureSelector<UserState>(USER_FEATURE_KEY);
 
 const getUser = createSelector(
   getUserState,
-  (state: UserState) => state.loaded
+  (state: UserState) => state.user
 );
 const getError = createSelector(
   getUserState,

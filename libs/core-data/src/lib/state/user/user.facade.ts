@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 
 import { UserPartialState } from './user.reducer';
 import { userQuery } from './user.selectors';
-import { LoadUser, AuthenticateUser } from './user.actions';
+import { LoadUser, AuthenticateUser, LogOutUser } from './user.actions';
 import { UserAuth } from '../../user/user.auth';
 
 @Injectable()
@@ -19,5 +19,9 @@ export class UserFacade {
 
   loadUser() {
     this.store.dispatch(new LoadUser());
+  }
+
+  logOutUser() {
+    this.store.dispatch(new LogOutUser());
   }
 }

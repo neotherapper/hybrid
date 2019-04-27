@@ -5,7 +5,6 @@ import { DataPersistence } from '@nrwl/nx';
 import { UserPartialState } from './user.reducer';
 import {
   AuthenticateUser,
-  UserAuthenticated,
   UserAuthenticationError,
   GoogleAuthenticateUser,
   LogOutUser,
@@ -24,10 +23,11 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 export class UserEffects {
   @Effect() loadUser$ = this.dataPersistence.fetch(UserActionTypes.LoadUser, {
     run: (action: LoadUser, state: UserPartialState) => {
-      // Your custom REST 'load' logic goes here. For now just return an empty list...
       return this.userService.getUser()
         .pipe(
-          map( (user) => new UserLoaded(user)),
+          map( (user) => {
+            return new UserLoaded(user);
+          }),
           catchError((error) => of(new UserLoadError(error)))
         );
     },
@@ -41,9 +41,9 @@ export class UserEffects {
   @Effect() authenticateUser$ = this.dataPersistence.pessimisticUpdate(UserActionTypes.AuthenticateUser, {
     run: (action: AuthenticateUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return from(this.userService.signUpUser(action.payload))
+      return from(this.userService.signInUser(action.payload))
         .pipe(
-          map((userCredentials) => new UserAuthenticated(userCredentials.user)),
+          map((userCredentials) => new UserLoaded(userCredentials.user)),
           catchError((error) => of(new UserAuthenticationError(error)))
         );
     },
@@ -70,7 +70,10 @@ export class UserEffects {
   @Effect() logOutUser$ = this.dataPersistence.fetch(UserActionTypes.LogOutUser, {
     run: (action: LogOutUser, state: UserPartialState) => {
       // Your custom REST 'load' logic goes here. For now just return an empty list...
-      return new UserLoggedOut();
+      return this.userService.logOutUser()
+        .pipe(
+          map(() => new UserLoggedOut())
+        )
     },
 
     onError: (action: LogOutUser, error) => {
