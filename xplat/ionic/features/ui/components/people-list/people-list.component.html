@@ -1,0 +1,7 @@
+<ion-list>
+  <ion-item *ngFor="let person of people$ | async">
+    <ion-label>
+      {{person.name}}
+    </ion-label>
+  </ion-item>
+</ion-list>

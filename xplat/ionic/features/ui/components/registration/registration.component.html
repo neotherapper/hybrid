@@ -1,10 +1,6 @@
 <ion-row align-items-center>
   <ion-col>
-    <ion-text color="dark">
-      <h1 class="ion-text-center">
-        Sign In
-      </h1>
-    </ion-text>
+    <ion-text color="dark"> <h1 class="ion-text-center">Sign In</h1> </ion-text>
   </ion-col>
 </ion-row>
 
@@ -14,26 +10,50 @@
       <ion-list inset="true">
         <ion-item>
           <ion-icon name="ios-mail" slot="start"></ion-icon>
-          <ion-input [(ngModel)]="registration.email" name="email" type="email" placeholder="E-mail" #email="ngModel"
-            spellcheck="false" autocapitalize="off" autofocus="true" pattern="email" required>
+          <ion-input
+            [(ngModel)]="registration.email"
+            name="email"
+            type="email"
+            placeholder="E-mail"
+            #email="ngModel"
+            spellcheck="false"
+            autocapitalize="off"
+            autofocus="true"
+            pattern="email"
+            required
+          >
           </ion-input>
         </ion-item>
 
         <ion-text color="danger">
-          <p [hidden]="email.valid || submitted == false" class="ion-padding-start">
+          <p
+            [hidden]="email.valid || submitted == false"
+            class="ion-padding-start"
+          >
             Email is required
           </p>
         </ion-text>
 
-        <ion-item [ngClass]="{'no-border': password.valid || submitted == false}" >
+        <ion-item
+          [ngClass]="{ 'no-border': password.valid || submitted == false }"
+        >
           <ion-icon name="lock" slot="start"></ion-icon>
-          <ion-input [(ngModel)]="registration.password" name="password" type="password" placeholder="Password"
-            #password="ngModel" required>
+          <ion-input
+            [(ngModel)]="registration.password"
+            name="password"
+            type="password"
+            placeholder="Password"
+            #password="ngModel"
+            required
+          >
           </ion-input>
         </ion-item>
 
         <ion-text color="danger">
-          <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+          <p
+            [hidden]="password.valid || submitted == false"
+            class="ion-padding-start"
+          >
             Password is required
           </p>
         </ion-text>
@@ -42,9 +62,7 @@
       <ion-row align-items-center>
         <ion-col>
           <ion-text color="dark">
-            <h6 class="ion-text-center">
-              Sign in with
-            </h6>
+            <h6 class="ion-text-center">Sign in with</h6>
           </ion-text>
         </ion-col>
       </ion-row>
@@ -62,11 +80,11 @@
           </ion-button>
         </ion-col>
         <ion-col>
-          <ion-button (click)="onSignIn()" color="dark" expand="block">Sign in</ion-button>
+          <ion-button (click)="onSignIn()" color="dark" expand="block"
+            >Sign in</ion-button
+          >
         </ion-col>
       </ion-row>
     </form>
   </ion-col>
 </ion-row>
-
-
