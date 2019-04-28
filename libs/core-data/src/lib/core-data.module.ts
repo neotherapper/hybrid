@@ -4,6 +4,8 @@ import { FirebaseModule } from '@workspace/firebase/src';
 import { StateModule } from './state/state.module';
 import { PeopleService } from './people/people.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './user/auth-guard.service';
+import { NoAuthGuard } from './user/no-auth-guard.service';
 
 const MODULES = [
   CommonModule,
@@ -13,6 +15,8 @@ const MODULES = [
 ];
 
 const PROVIDERS = [
+  AuthGuard,
+  NoAuthGuard,
   PeopleService
 ]
 
