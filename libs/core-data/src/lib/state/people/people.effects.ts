@@ -22,7 +22,7 @@ export class PeopleEffects {
         // Your custom REST 'load' logic goes here. For now just return an empty list...
         return this.peopleService.getPeople()
         .pipe(
-          map( (res: Person[]) => new PeopleLoaded(res) )
+          map( (person: Person[]) => new PeopleLoaded(person) )
         )
       },
 

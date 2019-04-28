@@ -8,9 +8,11 @@ import { UserFacade } from '@workspace/core-data/src';
   templateUrl: 'registration.component.html',
   styleUrls: ['registration.component.scss']
 })
-export class RegistrationComponent extends RegistrationBaseComponent{
-
-  constructor(public toastController: ToastController, public userFacade: UserFacade) {
+export class RegistrationComponent extends RegistrationBaseComponent {
+  constructor(
+    public toastController: ToastController,
+    public userFacade: UserFacade
+  ) {
     super(toastController, userFacade);
   }
 
